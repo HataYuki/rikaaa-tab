@@ -1,0 +1,180 @@
+// px to rem
+@mixin fs($size:16,$base_size:16){
+    font-size: ($size / $base_size) + rem;
+}
+
+// sing go weight setting func
+@mixin SingGo($w:"R"){
+   @if $w == "R"{
+    font-family: "Shin Go Regular";
+   }@else if $w == "EL"{
+    font-family: "Shin Go ExLight";
+   }@else if $w == "L"{
+    font-family: "Shin Go Light";
+   }@else if $w == "M"{
+    font-family: "Shin Go Medium";
+   }@else if $w == "DB"{
+    font-family: "Shin Go DeBold";
+   }@else if $w == "B"{
+    font-family: "Shin Go Bold";
+   }@else if $w == "H"{
+    font-family: "Shin Go Heavy";
+   }@else if $w == "U"{
+    font-family: "Shin Go Ultra";
+   }@else if $w == "EL_JIS2004"{
+    font-family: "Shin Go ExLight JIS2004";
+   }@else if $w == "L_JIS2004"{
+    font-family: "Shin Go Light JIS2004";
+   }@else if $w == "R_JIS2004"{
+    font-family: "Shin Go Regular JIS2004";
+   }@else if $w == "M_JIS2004"{
+    font-family: "Shin Go Medium JIS2004";
+   }@else if $w == "DB_JIS2004"{
+    font-family: "Shin Go DeBold JIS2004";
+   }@else if $w == "B_JIS2004"{
+    font-family: "Shin Go Bold JIS2004";
+   }@else if $w == "H_JIS2004"{
+    font-family: "Shin Go Heavy JIS2004";
+   }@else if $w == "U_JIS2004"{
+    font-family: "Shin Go Ultra JIS2004";
+   }
+}
+
+// ryumin weight setting func
+@mixin ryumin($w:'L-KL'){
+  @if $w == 'L-KL'{
+    font-family: "Ryumin Light KL";
+  }@else if $w == 'R-KL'{
+    font-family: "Ryumin Regular KL";
+  }@else if $w == 'M-KL'{
+    font-family: "Ryumin Medium KL";
+  }@else if $w == 'B-KL'{
+    font-family: "Ryumin Bold KL";
+  }@else if $w == 'EB-KL'{
+    font-family: "Ryumin ExtraBold KL";
+  }@else if $w == 'H-KL'{
+    font-family: "Ryumin Heavy KL";
+  }@else if $w == 'EH-KL'{
+    font-family: "Ryumin ExtraHeavy KL";
+  }@else if $w == 'U-KL'{
+    font-family: "Ryumin Ultra KL";
+  }@else if $w == 'L-KL_JIS2004'{
+    font-family: "Ryumin Light KL JIS2004";
+  }@else if $w == 'R-KL_JIS2004'{
+    font-family: "Ryumin Regular KL JIS2004";
+  }@else if $w == 'M-KL_JIS2004'{
+    font-family: "Ryumin Medium KL JIS2004";
+  }@else if $w == 'B-KL_JIS2004'{
+    font-family: "Ryumin Bold KL JIS2004";
+  }@else if $w == 'EB-KL_JIS2004'{
+    font-family: "Ryumin ExtraBold KL JIS2004";
+  }@else if $w == 'H-KL_JIS2004'{
+    font-family: "Ryumin Heavy KL JIS2004";
+  }@else if $w == 'EH-KL_JIS2004'{
+    font-family: "Ryumin ExtraHeavy KL JIS2004";
+  }@else if $w == 'U-KL JIS2004'{
+    font-family: "Ryumin Ultra KL JIS2004";
+  }
+}
+
+// media query
+$bp:(
+    'smp': '(max-width: 599px)',
+    'tp': '(min-width: 600px)',
+    'tl': '(min-width: 900px)',
+    'pc': '(min-width: 1200px)',
+    'bpc': '(min-width: 1800px)',
+);
+
+@mixin Mq($p: pc) {
+  @media #{map-get($bp, $p)} {
+    @content;
+  }
+}
+
+// paragraph
+@mixin pg($margin:1){
+  margin-bottom: $margin + rem;
+}
+
+// definition　list (for dl)
+@mixin dlistdl($dtw:100,$mgb:0.5){
+  *zoom: 1;
+  &:before,&:after{
+      content: " ";
+      display: table;
+  }
+  &:after {
+    clear: both;
+  }
+  dt,dd{
+    float:left;
+  }
+  dt{
+    text-transform: uppercase;
+    width:$dtw + px;
+    clear:both;
+  }
+  dd{
+    margin-left: 0;
+    text-align: left;
+    margin-bottom:$mgb + rem;
+    &:last-child{
+      margin-bottom:0;
+    }
+    p{
+      @include pg(0.3);
+      margin-top:0;
+    }
+    .desc{
+      text-align: right;
+      display: block;
+      @include SingGo("L_JIS2004");
+      @include fs(11);
+      line-height: 1.2;
+    }
+  }
+}
+
+// gradient
+@mixin bggrad($deg:'rtol',$c1:$baseWhite,$c2:$baseBlack,$durarion:8s){
+  @if $deg == 'ttob' or $deg == 'btot'{
+    background: linear-gradient(360deg,$c2,$c1,$c2);
+    background-size: 100% 200%;
+  }@else if $deg == 'rtol' or $deg == 'ltor'{
+    background: linear-gradient(45deg,$c2,$c1,$c2);
+    background-size: 200% 100%;
+  }
+  animation: bggradAnimation $durarion linear infinite;
+  @if $deg == 'ttob'{
+    @keyframes bggradAnimation {
+      0%{background-position:0% 0%}
+      50%{background-position:0% -100%}
+      100%{background-position:0% -200%}
+    }
+  }@else if $deg == 'btot'{
+   @keyframes bggradAnimation {
+      0%{background-position:0% 0%}
+      50%{background-position:0% 100%}
+      100%{background-position:0% 200%}
+    }
+  }@else if $deg == 'rtol'{
+    @keyframes bggradAnimation {
+      0%{background-position:0% 0%}
+      50%{background-position:100% 0%}
+      100%{background-position:200% 0%}
+    }
+  }@else if $deg == 'ltor'{
+   @keyframes bggradAnimation {
+      0%{background-position:0% 0%}
+      50%{background-position:-100% 0%}
+      100%{background-position:-200% 0%}
+    }
+  }
+  
+  // @keyframes bggradAnimation {
+  //   0%{background-position:0% 0%;}
+  //   50%{background-position:100% 0%;}
+  //   100%{background-position:200% 0%;}
+  // }
+}

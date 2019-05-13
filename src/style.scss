@@ -1,0 +1,56 @@
+@import '~normalize.css';
+
+.wp{
+    
+    padding: 20px;
+    *{
+        box-sizing: border-box;
+    }
+    .bg{
+        z-index: -1;
+        position: fixed;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('./images/bg.png');
+        background-size:cover;
+    }
+    h1,h2,h3,h4{
+        margin:0;
+    }
+    h1,h2{
+        color: white;
+    }
+    header{
+        h2{
+            font-size: 30px;
+        }
+    }
+    article{
+        padding: 20px;
+        background-color: rgba(0,0,0,0.8);
+        color:white;
+       > section{
+           max-width: 1068px;
+           margin: 0 auto;
+           margin-bottom: 20px;
+           .title{
+                font-weight: bold;
+                font-size: 30px;
+                margin: 0;
+                margin-bottom: 30px;
+                  border-width: 0 0 1px 0;
+                  border-style: solid;
+                  border-color: white;
+           }
+        
+       }
+    }
+    .maindemo{
+        rikaaa-tab{
+            width: 95%;
+            margin: 0 auto;
+        }
+    }
+}

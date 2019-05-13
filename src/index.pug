@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Document
+        link(rel="stylesheet", href="style.css")
+        script(src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=doxy")
+        script(src="rikaaa-tab.js")
+        script(src="app.js")
+
+    body
+        div.wp
+            div.bg
+            header
+                h2 rikaaa.org
+            article
+                section
+                    h1 &lt;rikaaa-tab&gt;
+                    p custom elements for implementing simple tabs.
+                section.maindemo
+                    .
+                        <style type="text/css"> rikaaa-tab#ex1 button { background-color: transparent; border: none; cursor: pointer; outline: none; padding: 0; appearance: none; } rikaaa-tab#ex1 .tabs { display: inline-block; width: 30px; height: 7px; background-color: white; margin-right: 10px; vertical-align: bottom; transition: opacity,width 200ms ease-in-out; } rikaaa-tab#ex1 .tabs.select { opacity: 0.5;width:10px; } rikaaa-tab#ex1 .barwp { padding: 10px 0; cursor: pointer; font-size: 0; } rikaaa-tab#ex1 .barwp .barinner .handle{width:35px;height:100%;display:inline-block;background-color:white;} rikaaa-tab#ex1 .barwp .barinner { background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4) 2px, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 5px); } rikaaa-tab#ex1 .barwp .barinner * { pointer-events: none; } rikaaa-tab#ex1 .barwp .barinner .bar {text-align: right;background: repeating-linear-gradient(90deg, #ffffff, #ffffff 2px, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 5px); } rikaaa-tab#ex1 .panel h4 { margin-bottom: 10px; font-weight: bold; background-color: white; color: black; line-height: 2rem; } rikaaa-tab#ex1 .panel h4, rikaaa-tab#ex1 .panel p { padding-left: 2%; } rikaaa-tab#ex1 .panel figure, rikaaa-tab#ex1 .panel img { vertical-align: bottom; margin: 0; width: 100%; } rikaaa-tab#ex1 .panel figcaption { margin-top: 2px; } </style>
+                        <rikaaa-tab id="ex1" seekbarh="10"><button slot="tab"></button><button slot="tab"></button><button slot="tab"></button><section class="barwp" slot="bar"><div class="barinner"><div class="bar"><div class="handle"></div></div></div></section><section class="panel"><figure><img src="images/foi_walk00.jpg"/><figcaption><h4>image00</h4><p>The Newt...</p><p>The height of the element </p></figcaption></figure></section><section class="panel"><figure><img src="images/foi_walk01.jpg"/><figcaption><h4>image01</h4><p>The Newt is...</p><p>The height of the element </p><p>is automatically deformed</p></figcaption></figure></section><section class="panel"><figure><img src="images/foi_walk02.jpg"/><figcaption><h4>image02</h4><p>The Newt is walking!!</p><p>The height of the element </p><p>is automatically deformed</p><p>while linear complementing.</p></figcaption></figure></section></rikaaa-tab>
+                    
+                section
+                    p.title Installation
+                    pre.prettyprint.lang-html
+                        | &lt;script src=&quot;rikaaa-tab.js&quot;&gt;&lt;/script&gt;
+                    pre.prettyprint.lang-js
+                        | import 'rikaaa-tab.js'
+                    p If you want to use browser that does not support webcomponent.
+                    pre.prettyprint.lang-js
+                        |import '@webcomponents/webcomponentsjs/webcomponents-bundle';
+                        |import '@webcomponents/shadycss/scoping-shim.min';
+                    pre.prettyprint.lang-html
+                        | &lt;script src=&quot;node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js&quot;&gt;&lt;/script&gt;
+                        | &lt;script src=&quot;node_modules/@webcomponents/shadycss/scoping-shim.min.js&quot;&gt;&lt;/script&gt;
+                section 
+                    p.title Usage
+                    p HTML
+                    pre.prettyprint.lang-html
+                        ='<rikaaa-tab>'
+                        br
+                        ='    <button slot="tab">button1</button> <!-- elective. "slot="tab" is required. -->' 
+                        br
+                        ='    <button slot="tab">button2</button> <!-- elective. "slot="tab" is required. -->'
+                        br
+                        ='    <button slot="tab">button3</button> <!-- elective. "slot="tab" is required. -->'
+                        br
+                        ='    <div slot="bar"><span class="bar">seek bar</span></div> <!-- elective. "slot="bar" & class="bar" is required. -->'
+                        br
+                        ='    <section>panel 1:write in your contents 1</section> <!-- required -->'
+                        br
+                        ='    <section>panel 2:write in your contents 2</section> <!-- required -->'
+                        br
+                        ='    <section>panel 3:write in your contents 3</section> <!-- required -->'
+                        br
+                        ='</rikaaa-tab>'
+                        br
+                    p Attribute
+                    pre.prettyprint.lang-html
+                        ='<rikaaa-tab seekbarh="3" seed="0" index="0" tabchangeduration="200" horizon="false" opmin="0">'
+                        br
+                        br
+                        ='<!-- elective, seekbarh="int": you can setting seekbar height. defult is 3. -->'
+                        br
+                        br
+                        ='<!-- elective, seed="float(0. 〜 1.)": Switching condition value. defult is 0.-->'
+                        br
+                        br
+                        ='<!-- elective, index="int(0 〜 panel length)": Switching condition value by int. defult is 0. -->'
+                        br
+                        br
+                        ='<!-- elective, tabchangeduration="milliseconds": Switching speed. defult is 200. -->'
+                        br
+                        br
+                        ='<!-- elective, horizon="boolean": Switching tab layout. defult is false. -->'
+                        br
+                        br
+                        ='<!-- elective, opmin="float(0. 〜 1.)": Valid only when `horizon = "true"` Set the minimum value of opacity of the element not selected. defult is 0. -->'
+                    p Event and Function
+                    pre.prettyprint.lang-ja
+                        ='const tab = document.getElementsByTagName("rikaaa-tab")[0];'
+                        br
+                        br
+                        ='tab.next(); // Change next tab'
+                        br
+                        br
+                        ='tab.prev();// Change prev tab'
+                        br
+                        br
+                        ='a.addEventListener("onfade", function (e) { // Fires while tab is fading.'
+                        br
+                        br
+                        ='    console.log(e.detail.seed); //return seed value.'
+                        br
+                        br
+                        ='    console.log(e.detail.fade); //return array. This is switching status of each tab.'
+                        br
+                        br
+                        ='});'
+                        br
+                    
+                section
+                    p.title Example
+                    p Above example code:
+                    pre.prettyprint.lang-html
+                        ='<style type="text/css">'
+                        br
+                        ='    rikaaa-tab#ex1 button {'
+                        br
+                        ='        background-color: transparent;'
+                        br
+                        ='        border: none;'
+                        br
+                        ='        cursor: pointer;'
+                        br
+                        ='        outline: none;'
+                        br
+                        ='        padding: 0;'
+                        br
+                        ='        appearance: none;'
+                        br
+                        ='    }'
+                        br
+                        ='    rikaaa-tab#ex1 .tabs {'
+                        br
+                        ='        display: inline-block;'
+                        br
+                        ='        width: 30px;'
+                        br
+                        ='        height: 7px;'
+                        br
+                        ='        background-color: white;'
+                        br
+                        ='        margin-right: 10px;'
+                        br
+                        ='        vertical-align: bottom;'
+                        br
+                        ='        transition: opacity, width 200ms ease-in-out;'
+                        br
+                        ='    }'
+                        br
+                        ='    rikaaa-tab#ex1 .tabs.select {'
+                        br
+                        ='        opacity: 0.5;'
+                        br
+                        ='        width: 10px;'
+                        br
+                        ='    }'
+                        br
+                        ='    rikaaa-tab#ex1 .barwp {'
+                        br
+                        ='        padding: 10px 0;'
+                        br
+                        ='        cursor: pointer;'
+                        br
+                        ='        font-size: 0;'
+                        br
+                        ='    }'
+                        br
+                        ='    rikaaa-tab#ex1 .barwp .barinner .handle {'
+                        br
+                        ='        width: 35px;'
+                        br
+                        ='        height: 100%;'
+                        br
+                        ='        display: inline-block;'
+                        br
+                        ='        background-color: white;'
+                        br
+                        ='    }'
+                        br
+                        ='    rikaaa-tab#ex1 .barwp .barinner {'
+                        br
+                        ='        background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4) 2px, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 5px);'
+                        br
+                        ='    }'
+                        br
+                        ='    rikaaa-tab#ex1 .barwp .barinner * {'
+                        br
+                        ='        pointer-events: none;'
+                        br
+                        ='    }'
+                        br
+                        ='    rikaaa-tab#ex1 .barwp .barinner .bar {'
+                        br
+                        ='        text-align: right;'
+                        br
+                        ='        background: repeating-linear-gradient(90deg, #ffffff, #ffffff 2px, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 5px);'
+                        br
+                        ='    }'
+                        br
+                        ='    rikaaa-tab#ex1 .panel h4 {'
+                        br
+                        ='        margin-bottom: 10px;'
+                        br
+                        ='        font-weight: bold;'
+                        br
+                        ='        background-color: white;'
+                        br
+                        ='        color: black;'
+                        br
+                        ='        line-height: 2rem;'
+                        br
+                        ='    }'
+                        br
+                        ='    rikaaa-tab#ex1 .panel h4,'
+                        br
+                        ='    rikaaa-tab#ex1 .panel p {'
+                        br
+                        ='        padding-left: 2%;'
+                        br
+                        ='    }'
+                        br
+                        ='    rikaaa-tab#ex1 .panel figure,'
+                        br
+                        ='    rikaaa-tab#ex1 .panel img {'
+                        br
+                        ='        vertical-align: bottom;'
+                        br
+                        ='        margin: 0;'
+                        br
+                        ='        width: 100%;'
+                        br
+                        ='    }'
+                        br
+                        ='    rikaaa-tab#ex1 .panel figcaption {'
+                        br
+                        ='        margin-top: 2px;'
+                        br
+                        ='    }'
+                        br
+                        ='</style>'
+                        br
+                        ='<rikaaa-tab id="ex1" seekbarh="10"><button slot="tab"></button><button slot="tab"></button><button slot="tab"></button>'
+                        br
+                        ='    <section class="barwp" slot="bar">'
+                        br
+                        ='        <div class="barinner">'
+                        br
+                        ='            <div class="bar">'
+                        br
+                        ='                <div class="handle"></div>'
+                        br
+                        ='            </div>'
+                        br
+                        ='        </div>'
+                        br
+                        ='    </section>'
+                        br
+                        ='    <section class="panel">'
+                        br
+                        ='        <figure><img src="images/foi_walk00.jpg" />'
+                        br
+                        ='            <figcaption>'
+                        br
+                        ='                <h4>image00</h4>'
+                        br
+                        ='                <p>The Newt...</p>'
+                        br
+                        ='                <p>The height of the element </p>'
+                        br
+                        ='            </figcaption>'
+                        br
+                        ='        </figure>'
+                        br
+                        ='    </section>'
+                        br
+                        ='    <section class="panel">'
+                        br
+                        ='        <figure><img src="images/foi_walk01.jpg" />'
+                        br
+                        ='            <figcaption>'
+                        br
+                        ='                <h4>image01</h4>'
+                        br
+                        ='                <p>The Newt is...</p>'
+                        br
+                        ='                <p>The height of the element </p>'
+                        br
+                        ='                <p>is automatically deformed</p>'
+                        br
+                        ='            </figcaption>'
+                        br
+                        ='        </figure>'
+                        br
+                        ='    </section>'
+                        br
+                        ='    <section class="panel">'
+                        br
+                        ='        <figure><img src="images/foi_walk02.jpg" />'
+                        br
+                        ='            <figcaption>'
+                        br
+                        ='                <h4>image02</h4>'
+                        br
+                        ='                <p>The Newt is walking!!</p>'
+                        br
+                        ='                <p>The height of the element </p>'
+                        br
+                        ='                <p>is automatically deformed</p>'
+                        br
+                        ='                <p>while linear complementing.</p>'
+                        br
+                        ='            </figcaption>'
+                        br
+                        ='        </figure>'
+                        br
+                        ='    </section>'
+                        br
+                        ='</rikaaa-tab>'
+                        br
