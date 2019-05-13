@@ -63,7 +63,7 @@ import '@webcomponents/shadycss/scoping-shim.min';
 
 1. horizon="boolean" : Switching tab layout. defult is false. 
 
-1.  opmin="float(0. 〜 1.)" : alid only when -horizon = "true"- Set the minimum value of opacity of the element not selected. defult is 0.
+1.  opmin="float(0. 〜 1.)" : Valid only when -horizon = "true"- Set the minimum value of opacity of the element not selected. defult is 0.
 
 
 ```bash
