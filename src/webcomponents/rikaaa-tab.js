@@ -41,9 +41,9 @@ class rikaaatab extends HTMLElement{
         this._panelslot = this.shadowRoot.querySelector('.panel_slot');
         this._seekbarslot = this.shadowRoot.querySelector('.seekbar_slot');
 
-        this._tabs = this._tabslot.assignedNodes({ flattern: true });
-        this._panels = this._panelslot.assignedNodes({ flatten: true });
-        this._bar = this._seekbarslot.assignedNodes({ flatten: true })[0];
+        this._tabs = this._tabslot.assignedNodes({ flattern: true }).filter(n => n.nodeType === n.ELEMENT_NODE);
+        this._panels = this._panelslot.assignedNodes({ flatten: true }).filter(n => n.nodeType === n.ELEMENT_NODE);
+        this._bar = this._seekbarslot.assignedNodes({ flatten: true }).filter(n => n.nodeType === n.ELEMENT_NODE)[0];
 
         this._panelsH = Array.from(this._panels).reduce((a, c) => a.concat(c.offsetHeight), []);
 
