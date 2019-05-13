@@ -3,10 +3,6 @@
 
   // empty
 
-  var es_object_toString = /*#__PURE__*/Object.freeze({
-
-  });
-
   var ceil = Math.ceil;
   var floor = Math.floor;
 
@@ -42,10 +38,6 @@
 
   function createCommonjsModule(fn, module) {
   	return module = { exports: {} }, fn(module, module.exports), module.exports;
-  }
-
-  function getCjsExportFromNamespace (n) {
-  	return n && n['default'] || n;
   }
 
   // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -1642,8 +1634,6 @@
     }
   });
 
-  getCjsExportFromNamespace(es_object_toString);
-
   var promise$1 = path.Promise;
 
   var promise$2 = promise$1;
@@ -2196,6 +2186,32 @@
 
   var reduce$2 = reduce$1;
 
+  var internalFilter = arrayMethods(2);
+
+  var SPECIES_SUPPORT$3 = arrayMethodHasSpeciesSupport('filter');
+
+  // `Array.prototype.filter` method
+  // https://tc39.github.io/ecma262/#sec-array.prototype.filter
+  // with adding support of @@species
+  _export({ target: 'Array', proto: true, forced: !SPECIES_SUPPORT$3 }, {
+    filter: function filter(callbackfn /* , thisArg */) {
+      return internalFilter(this, callbackfn, arguments[1]);
+    }
+  });
+
+  var filter = entryVirtual('Array').filter;
+
+  var ArrayPrototype$8 = Array.prototype;
+
+  var filter_1 = function (it) {
+    var own = it.filter;
+    return it === ArrayPrototype$8 || (it instanceof Array && own === ArrayPrototype$8.filter) ? filter : own;
+  };
+
+  var filter$1 = filter_1;
+
+  var filter$2 = filter$1;
+
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
@@ -2605,10 +2621,6 @@
 
   // empty
 
-  var es_symbol_description = /*#__PURE__*/Object.freeze({
-
-  });
-
   // `Symbol.hasInstance` well-known symbol
   // https://tc39.github.io/ecma262/#sec-symbol.hasinstance
   defineWellKnownSymbol('hasInstance');
@@ -2656,8 +2668,6 @@
   // JSON[@@toStringTag] property
   // https://tc39.github.io/ecma262/#sec-json-@@tostringtag
   setToStringTag(global$1.JSON, 'JSON', true);
-
-  getCjsExportFromNamespace(es_symbol_description);
 
   var symbol = path.Symbol;
 
@@ -3901,7 +3911,7 @@
 
   var keys$1 = keys;
 
-  var ArrayPrototype$8 = Array.prototype;
+  var ArrayPrototype$9 = Array.prototype;
 
   var DOMIterables$1 = {
     DOMTokenList: true,
@@ -3910,7 +3920,7 @@
 
   var keys_1 = function (it) {
     var own = it.keys;
-    return it === ArrayPrototype$8 || (it instanceof Array && own === ArrayPrototype$8.keys)
+    return it === ArrayPrototype$9 || (it instanceof Array && own === ArrayPrototype$9.keys)
       // eslint-disable-next-line no-prototype-builtins
       || DOMIterables$1.hasOwnProperty(classof(it)) ? keys$1 : own;
   };
@@ -4176,9 +4186,12 @@
       key: "connectedCallback",
       value: function connectedCallback() {
         var _context,
-            _this2 = this,
             _context2,
-            _context3;
+            _context3,
+            _context4,
+            _this2 = this,
+            _context5,
+            _context6;
 
         this._ease = new Ease('ease_in_out');
         this._tab = this.shadowRoot.querySelector('.tab');
@@ -4187,16 +4200,22 @@
         this._tabslot = this.shadowRoot.querySelector('.tab_slot');
         this._panelslot = this.shadowRoot.querySelector('.panel_slot');
         this._seekbarslot = this.shadowRoot.querySelector('.seekbar_slot');
-        this._tabs = this._tabslot.assignedNodes({
+        this._tabs = filter$2(_context = this._tabslot.assignedNodes({
           flattern: true
+        })).call(_context, function (n) {
+          return n.nodeType === n.ELEMENT_NODE;
         });
-        this._panels = this._panelslot.assignedNodes({
+        this._panels = filter$2(_context2 = this._panelslot.assignedNodes({
           flatten: true
+        })).call(_context2, function (n) {
+          return n.nodeType === n.ELEMENT_NODE;
         });
-        this._bar = this._seekbarslot.assignedNodes({
+        this._bar = filter$2(_context3 = this._seekbarslot.assignedNodes({
           flatten: true
+        })).call(_context3, function (n) {
+          return n.nodeType === n.ELEMENT_NODE;
         })[0];
-        this._panelsH = reduce$2(_context = from_1$4(this._panels)).call(_context, function (a, c) {
+        this._panelsH = reduce$2(_context4 = from_1$4(this._panels)).call(_context4, function (a, c) {
           return concat$2(a).call(a, c.offsetHeight);
         }, []); // touch slide panel
 
@@ -4321,7 +4340,7 @@
         this.seed = this.seed;
         this.opmin = this.opmin;
 
-        forEach$2(_context2 = from_1$4(this._tabs)).call(_context2, function (n) {
+        forEach$2(_context5 = from_1$4(this._tabs)).call(_context5, function (n) {
           return n.classList.add('tabs');
         });
 
@@ -4341,7 +4360,7 @@
         };
 
         if (this._tabs.length) this._tabslot.addEventListener('click', tabclick);
-        window.addEventListener('resize', bind$3(_context3 = this.redraw).call(_context3, this));
+        window.addEventListener('resize', bind$3(_context6 = this.redraw).call(_context6, this));
         this.imgonload();
       }
     }, {
@@ -4350,9 +4369,9 @@
         var _this3 = this;
 
         if (this._tabs.length) {
-          var _context4;
+          var _context7;
 
-          forEach$2(_context4 = this._farray).call(_context4, function (v, i) {
+          forEach$2(_context7 = this._farray).call(_context7, function (v, i) {
             if (v >= 0.5) _this3._tabs[i].classList.add('select');else _this3._tabs[i].classList.remove('select');
           });
         }
@@ -4449,9 +4468,9 @@
     }, {
       key: "redraw",
       value: function redraw() {
-        var _context5;
+        var _context8;
 
-        this._panelsH = reduce$2(_context5 = from_1$4(this._panels)).call(_context5, function (a, c) {
+        this._panelsH = reduce$2(_context8 = from_1$4(this._panels)).call(_context8, function (a, c) {
           return concat$2(a).call(a, c.offsetHeight);
         }, []);
         this.fade(this.seed);
@@ -4486,19 +4505,19 @@
     }, {
       key: "imgonload",
       value: function imgonload() {
-        var _context6,
+        var _context9,
             _this7 = this;
 
         var tab = document.getElementsByTagName('rikaaa-tab');
 
-        var imgNode = map$2(_context6 = from_1$4(tab)).call(_context6, function (node) {
+        var imgNode = map$2(_context9 = from_1$4(tab)).call(_context9, function (node) {
           return from_1$4(node.querySelectorAll('img'));
         });
 
         var imgNode_flatten = reduce$2(imgNode).call(imgNode, function (a, c) {
-          var _concatInstanceProper, _context7;
+          var _concatInstanceProper, _context10;
 
-          return (_concatInstanceProper = concat$2(a)).call.apply(_concatInstanceProper, concat$2(_context7 = [a]).call(_context7, toConsumableArray(c)));
+          return (_concatInstanceProper = concat$2(a)).call.apply(_concatInstanceProper, concat$2(_context10 = [a]).call(_context10, toConsumableArray(c)));
         }, []);
 
         var imgloaded = promise$3.all(map$2(imgNode_flatten).call(imgNode_flatten, function (i) {
@@ -4584,19 +4603,19 @@
         var node = this._panels;
 
         if (n) {
-          var _context8;
+          var _context11;
 
           this._panel.classList.add('horizon');
 
-          map$2(_context8 = from_1$4(node)).call(_context8, function (n) {
+          map$2(_context11 = from_1$4(node)).call(_context11, function (n) {
             return n.style.width = "".concat(100 * 1 / node.length, "%");
           });
         } else {
-          var _context9;
+          var _context12;
 
           this._panel.classList.remove('horizon');
 
-          map$2(_context9 = from_1$4(node)).call(_context9, function (n) {
+          map$2(_context12 = from_1$4(node)).call(_context12, function (n) {
             return n.style.width = '';
           });
         }
