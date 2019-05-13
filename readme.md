@@ -74,7 +74,7 @@ tab.next(); // Change next tab
 
 tab.prev();// Change prev tab
 
-a.addEventListener("onfade", function (e) { // Fires while tab is fading.
+tab.addEventListener("onfade", function (e) { // Fires while tab is fading.
 
     console.log(e.detail.seed); //return seed value.
 
