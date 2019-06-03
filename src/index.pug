@@ -18,7 +18,7 @@ html(lang="en")
             article
                 section
                     h1 &lt;rikaaa-tab&gt;
-                    p custom elements for implementing simple tabs.
+                    p The Custom Element in order to impliment simple tab function.
                 section.maindemo
                     .
                         <style type="text/css"> rikaaa-tab#ex1 button { background-color: transparent; border: none; cursor: pointer; outline: none; padding: 0; appearance: none; } rikaaa-tab#ex1 .tabs { display: inline-block; width: 30px; height: 7px; background-color: white; margin-right: 10px; vertical-align: bottom; transition: opacity,width 200ms ease-in-out; } rikaaa-tab#ex1 .tabs.select { opacity: 0.5;width:10px; } rikaaa-tab#ex1 .barwp { padding: 10px 0; cursor: pointer; font-size: 0; } rikaaa-tab#ex1 .barwp .barinner .handle{width:35px;height:100%;display:inline-block;background-color:white;} rikaaa-tab#ex1 .barwp .barinner { background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4) 2px, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 5px); } rikaaa-tab#ex1 .barwp .barinner * { pointer-events: none; } rikaaa-tab#ex1 .barwp .barinner .bar {text-align: right;background: repeating-linear-gradient(90deg, #ffffff, #ffffff 2px, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 5px); } rikaaa-tab#ex1 .panel h4 { margin-bottom: 10px; font-weight: bold; background-color: white; color: black; line-height: 2rem; } rikaaa-tab#ex1 .panel h4, rikaaa-tab#ex1 .panel p { padding-left: 2%; } rikaaa-tab#ex1 .panel figure, rikaaa-tab#ex1 .panel img { vertical-align: bottom; margin: 0; width: 100%; } rikaaa-tab#ex1 .panel figcaption { margin-top: 2px; } </style>
@@ -64,22 +64,22 @@ html(lang="en")
                         ='<rikaaa-tab seekbarh="3" seed="0" index="0" tabchangeduration="200" horizon="false" opmin="0">'
                         br
                         br
-                        ='<!-- elective, seekbarh="int": you can setting seekbar height. defult is 3. -->'
+                        ='<!-- elective, seekbarh="int" : The parameter to set the height of SeekBar. default value is 3. -->'
                         br
                         br
-                        ='<!-- elective, seed="float(0. 〜 1.)": Switching condition value. defult is 0.-->'
+                        ='<!-- elective, seed="float(0. 〜 1.)" : The parameter to set the condition of switching of tabs by floating decimal point. The range of parameter is 0 to 1. default value is 0.-->'
                         br
                         br
-                        ='<!-- elective, index="int(0 〜 panel length)": Switching condition value by int. defult is 0. -->'
+                        ='<!-- elective, index="int(0 〜 panel length)" : The parameter to set the condition of switching of tabs by integral number. The range of parameter is 0 to Number of tabs. default value is 0. -->'
                         br
                         br
-                        ='<!-- elective, tabchangeduration="milliseconds": Switching speed. defult is 200. -->'
+                        ='<!-- elective, tabchangeduration="milliseconds" : The parameter to set the velocity of swiching tab. The unit is millisecond. default value is 200. -->'
                         br
                         br
-                        ='<!-- elective, horizon="boolean": Switching tab layout. defult is false. -->'
+                        ='<!-- elective, horizon="boolean" : The parameter to set the display of tabs by truth value. default is "false". -->'
                         br
                         br
-                        ='<!-- elective, opmin="float(0. 〜 1.)": Valid only when `horizon = "true"` Set the minimum value of opacity of the element not selected. defult is 0. -->'
+                        ='<!-- elective, opmin="float(0. 〜 1.)" : The parameter to set the opacity that is not selected tabs by floating decimal point. The parameter is effective in case of above parameter is "true". The range of parameter is 0 to 1. default value is 0. -->'
                     p Event and Function
                     pre.prettyprint.lang-ja
                         ='const tab = document.getElementsByTagName("rikaaa-tab")[0];'

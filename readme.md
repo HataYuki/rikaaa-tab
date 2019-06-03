@@ -1,5 +1,5 @@
 # `<rikaaa-tab>`
-Custom elements for implementing simple tabs.
+The Custom Element in order to impliment simple tab function.
 
 ![](rikaaa-tab.gif)
 
@@ -53,17 +53,18 @@ import '@webcomponents/shadycss/scoping-shim.min';
 #Attribute
 <rikaaa-tab seekbarh="3" seed="0" index="0" tabchangeduration="200" horizon="false" opmin="0">
 ```
-1. seekbarh="int" : you can setting seekbar height. defult is 3.
+1. seekbarh="int" : The parameter to set the height of SeekBar. default value is 3.
 
-1. seed="float(0. 〜 1.)" : Switching condition value. defult is 0.
+1. seed="float(0. 〜 1.)" : The parameter to set the condition of switching of tabs by floating decimal point. The range of parameter is 0 to 1. default value is 0.
 
-1. index="int(0 〜 panel length)" : Switching condition value by int. defult is 0.
+1. index="int(0 〜 panel length)" : The parameter to set the condition of switching of tabs by integral number. The range of parameter is 0 to Number of tabs. default value is 0.
 
-1. abchangeduration="milliseconds" : Switching speed. defult is 200.
 
-1. horizon="boolean" : Switching tab layout. defult is false. 
+1. tabchangeduration="milliseconds" : The parameter to set the velocity of swiching tab. The unit is millisecond. default value is 200.
 
-1.  opmin="float(0. 〜 1.)" : Valid only when -horizon = "true"- Set the minimum value of opacity of the element not selected. defult is 0.
+1. horizon="boolean" : The parameter to set the display of tabs by truth value. default is 'false'.
+
+1.  opmin="float(0. 〜 1.)" : The parameter to set the opacity that is not selected tabs by floating decimal point. The parameter is effective in case of above parameter is 'true'. The range of parameter is 0 to 1. default value is 0.
 
 
 ```bash
