@@ -52,11 +52,6 @@ module.exports = {
          },
         html2JsPreprocessor: {
              stripPrefix: 'dist/',
-        },
-        // client: {
-        //     mocha: {
-        //         delay: true
-        //     }
-        // }
+        }
     }
 };

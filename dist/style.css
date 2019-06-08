@@ -40,8 +40,7 @@ h1 {
  * 2. Show the overflow in Edge and IE.
  */
 hr {
-  -webkit-box-sizing: content-box;
-          box-sizing: content-box;
+  box-sizing: content-box;
   /* 1 */
   height: 0;
   /* 1 */
@@ -208,8 +207,7 @@ fieldset {
  *    `fieldset` elements in all browsers.
  */
 legend {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   /* 1 */
   color: inherit;
   /* 2 */
@@ -240,8 +238,7 @@ textarea {
  */
 [type="checkbox"],
 [type="radio"] {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   /* 1 */
   padding: 0;
   /* 2 */ }
@@ -310,8 +307,7 @@ template {
 .wp {
   padding: 20px; }
   .wp * {
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box; }
+    box-sizing: border-box; }
   .wp .bg {
     z-index: -1;
     position: fixed;
@@ -343,6 +339,3 @@ template {
         border-width: 0 0 1px 0;
         border-style: solid;
         border-color: white; }
-  .wp .maindemo rikaaa-tab {
-    width: 95%;
-    margin: 0 auto; }

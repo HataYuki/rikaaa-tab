@@ -7,21 +7,18 @@ The Custom Element in order to impliment simple tab function.
 
 ## Installation
 ```bash
-#script tag
+#script
+<!-- If you want to use The Custom Element -->
+<script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/webcomponents-loader.js"></script>
+
 <script src="rikaaa-tab.js"></script>
-
-#esm
-import 'rikaaa-tab.js'
 ```
-If you want to use browser that does not support webcomponent.
-```bash
-#script tag
-<script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-<script src="node_modules/@webcomponents/shadycss/scoping-shim.min.js"></script>
 
-#ems
-import '@webcomponents/webcomponentsjs/webcomponents-bundle';
-import '@webcomponents/shadycss/scoping-shim.min';
+```bash
+#esm
+import "rikaaatab" from "rikaaa-tab.esm";
+
+customElements.define("rikaaa-tab", rikaaatab);
 ```
 ## Usage 
 ```bash
@@ -69,18 +66,18 @@ import '@webcomponents/shadycss/scoping-shim.min';
 
 ```bash
 #Event and Function
-const tab = document.getElementsByTagName("rikaaa-tab")[0];
+var tab = document.getElementById("ex1");
+tab.addEventListener("load", function() {
+    console.log("loaded");
 
-tab.next(); // Change next tab
+    tab.next(); // Change next tab
+    // tab.prev(); // Change prev tab
 
-tab.prev();// Change prev tab
-
-tab.addEventListener("onfade", function (e) { // Fires while tab is fading.
-
-    console.log(e.detail.seed); //return seed value.
-
-    console.log(e.detail.fade); //return array. This is switching status of each tab.
-
+    tab.addEventListener("onfade", function(e){
+        console.log("fade");
+        console.log("seed is : " + e.detail.seed); //return seed value.
+        console.log("fade is : " + e.detail.fade);  //return array. This is switching status of each tab.
+    });
 });
 ```
 

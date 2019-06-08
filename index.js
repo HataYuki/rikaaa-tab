@@ -12,7 +12,7 @@ const path = require('path');
 const bs = require('browser-sync');
 const gaze = require('gaze');
 const glob = require('glob');
-const uglify = require('uglify-js');
+const uglify = require('uglify-es');
 const hostPath = process.argv[1];
 const cmd = process.argv[2];
 
@@ -64,7 +64,7 @@ const buildSass = async (sassPath) => {
 };
 
 const buildJs = async (jsPath) => {
-    const d = await rollup(jsPath);
+    const d = await rollup(jsPath, false, ['@webcomponents/webcomponentsjs/webcomponents-bundle'], 'iife');
     const distpath = changeToDistPath(jsPath);
     return new Promise((resolve, reject) => {
         fs.outputFile(distpath, d, err => {
@@ -126,7 +126,7 @@ const copyImg = async () => {
 
 const watchStart = async () => {
     const fileall = { ... await files(config) };
-    const entrys = [...fileall.entry].concat([...fileall.webcomponents]);
+    const entrys = [...fileall.entry].concat(['src/webcomponents/entryfile.js']);
     await output(entrys);
     await copyImg();
     bs.init({server: config.path.distDir});
@@ -151,19 +151,38 @@ const build = async () => {
            });
         });
     };
+
     const datas = async () => {
         const paths = await wcf();
-        return Promise.all(paths.map(async path => await rollup(path, true)));
+        return Promise.all(paths.map(async path => {
+            return {
+                path: path,
+                data: (path.match(/entryfile.js/)) ? await rollup(path, false, ['@webcomponents/webcomponentsjs/webcomponents-bundle'], 'iife') : await rollup(path, true, false, 'esm'),
+            }
+        }));
     };
     const d = await datas();
-    const outputpath = path.join('./', `${config.webcomponents.name}.js`);
+    
     d.forEach(c => {
-        const min_code = uglify.minify(c).code;
-        fs.outputFile(outputpath, min_code, err => {
-            if (err) console.error(err);
+        const outputPath = (c.path.match(/entryfile.js/)) ? path.join('./', `${config.webcomponents.name}.js`) : path.join('./', `${config.webcomponents.name}.esm.js`);
+        
+        const minCode = uglify.minify(c.data).code;
+        
+        
+        fs.outputFile(outputPath, minCode, err => {
+            if (err) console.log(err);
             else console.log('build success');
         });
     });
+    
+    // const outputpath = path.join('./', `${config.webcomponents.name}.js`);
+    // d.forEach(c => {
+    //     const min_code = uglify.minify(c).code;
+    //     fs.outputFile(outputpath, min_code, err => {
+    //         if (err) console.error(err);
+    //         else console.log('build success');
+    //     });
+    // });
 };
 
 const karmaStart = async () => {
