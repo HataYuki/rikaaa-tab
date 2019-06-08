@@ -2,20 +2,17 @@
 import ready from './assets/js/_Domready';
 
 ready(() => {
-    const tab = document.getElementById('ex1');
-    tab.addEventListener('load', () => {
+    var tab = document.getElementById('ex1');
+    tab.addEventListener('load', function() {
         console.log('loaded');
-        // tab.index = 2;
-        // tab.horizon = true;
-        // tab.opmin = 0.5;
-        tab.addEventListener('onfade', e => {
+        tab.next(); // Change next tab
+        // tab.prev(); // Change prev tab
+        tab.addEventListener('onfade', function(e){
             console.log('fade');
-            console.log(`seed is : ${e.detail.seed}`);
-            console.log(`fade is : ${e.detail.fade}`);
+            console.log("seed is : " + e.detail.seed); //return seed value.
+            console.log("fade is : " + e.detail.fade);  //return array. This is switching status of each tab.
         });
     });
-    const parent = tab.parentNode;
-    // parent.removeChild(tab);
 });
 
 
