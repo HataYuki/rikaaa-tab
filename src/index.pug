@@ -6,9 +6,10 @@ html(lang="en")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
         title Document
         link(rel="stylesheet", href="style.css")
-        script(src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=doxy")
-        script(src="rikaaa-tab.js")
         script(src="app.js")
+        script(src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=doxy")
+        script(src="https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/webcomponents-loader.js")
+        script(src="entryfile.js")
 
     body
         div.wp
@@ -26,17 +27,21 @@ html(lang="en")
                     
                 section
                     p.title Installation
+                    p script
                     pre.prettyprint.lang-html
-                        | &lt;script src=&quot;rikaaa-tab.js&quot;&gt;&lt;/script&gt;
+                        = '<!-- If you want to use The Custom Element -->'
+                        br
+                        = '<script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/webcomponents-loader.js"></script>'
+                        br
+                        br
+                        = '<script src="rikaaa-tab.js"></script>'
+
+                    p esm
                     pre.prettyprint.lang-js
-                        | import 'rikaaa-tab.js'
-                    p If you want to use browser that does not support webcomponent.
-                    pre.prettyprint.lang-js
-                        |import '@webcomponents/webcomponentsjs/webcomponents-bundle';
-                        |import '@webcomponents/shadycss/scoping-shim.min';
-                    pre.prettyprint.lang-html
-                        | &lt;script src=&quot;node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js&quot;&gt;&lt;/script&gt;
-                        | &lt;script src=&quot;node_modules/@webcomponents/shadycss/scoping-shim.min.js&quot;&gt;&lt;/script&gt;
+                        = 'import "rikaaatab" from "rikaaa-tab.esm";'
+                        br
+                        br
+                        ='customElements.define("rikaaa-tab", rikaaatab);'
                 section 
                     p.title Usage
                     p HTML
@@ -82,23 +87,27 @@ html(lang="en")
                         ='<!-- elective, opmin="float(0. 〜 1.)" : The parameter to set the opacity that is not selected tabs by floating decimal point. The parameter is effective in case of above parameter is "true". The range of parameter is 0 to 1. default value is 0. -->'
                     p Event and Function
                     pre.prettyprint.lang-ja
-                        ='const tab = document.getElementsByTagName("rikaaa-tab")[0];'
+                        ='var tab = document.getElementById("ex1");'
+                        br
+                        ='tab.addEventListener("load", function() {'
+                        br
+                        ='    console.log("loaded");'
                         br
                         br
-                        ='tab.next(); // Change next tab'
+                        ='    tab.next(); // Change next tab'
+                        br
+                        ='    // tab.prev(); // Change prev tab'
                         br
                         br
-                        ='tab.prev();// Change prev tab'
+                        ='    tab.addEventListener("onfade", function(e){'
                         br
+                        ='        console.log("fade");'
                         br
-                        ='a.addEventListener("onfade", function (e) { // Fires while tab is fading.'
+                        ='        console.log("seed is : " + e.detail.seed); //return seed value.'
                         br
+                        ='        console.log("fade is : " + e.detail.fade);  //return array. This is switching status of each tab.'
                         br
-                        ='    console.log(e.detail.seed); //return seed value.'
-                        br
-                        br
-                        ='    console.log(e.detail.fade); //return array. This is switching status of each tab.'
-                        br
+                        ='    });'
                         br
                         ='});'
                         br

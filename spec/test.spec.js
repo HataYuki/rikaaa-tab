@@ -20,7 +20,7 @@ before(function () {
 ready(() => {
     describe('rikaaa-tab test', function () {
         it('write your test', () => {
-           
+            assert(0 === 0);
         });
     });
     run();
