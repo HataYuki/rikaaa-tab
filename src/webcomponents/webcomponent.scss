@@ -1,0 +1,32 @@
+:host {
+    display: block;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .tab {
+        line-height: 0;
+    }
+
+    .panel {
+        position: relative;
+        &.us-none {
+            user-select: none;
+        }
+    }
+    .panel ::slotted(*) {
+        position: absolute;
+        pointer-events: none;
+        
+    }
+    .horizon {
+        display: flex;
+
+        ::slotted(*) {
+            position: static;
+        }
+    }
+}
+
+

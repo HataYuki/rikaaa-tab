@@ -1,5 +1,6 @@
 import constrain from '../js/_Constrain';
 import map from '../js/_Map';
+import './mdn-polyfill.Array.keys';
 export default class MultiFade{
     constructor(length) {
         this._len = (length && length > 1) ? length : 2;
