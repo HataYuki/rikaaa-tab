@@ -1,8 +1,8 @@
 {
   "name": "rikaaa-tab",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "",
-  "main": "index.js",
+  "main": "rikaaa-tab.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "node index.js watch",
@@ -11,8 +11,12 @@
     "server": "node index.js serverStart"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "rikaaa.org | Yuki Hata",
+    "email": "yhata.01@gmail.com",
+    "url": "http://rikaaa.org"
+  },
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -43,6 +47,7 @@
     "rollup": "^1.17.0",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-license": "^0.9.0",
     "rollup-plugin-node-resolve": "^4.2.4",
     "uglify-es": "git+https://github.com/mishoo/UglifyJS2.git#harmony",
     "watchify": "^3.11.1"
