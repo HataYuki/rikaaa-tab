@@ -29,19 +29,13 @@ html(lang="en")
                     p.title Installation
                     p script
                     pre.prettyprint.lang-html
-                        = '<!-- If you want to use The Custom Element -->'
+                        = '<!-- If you want to use the Custom Element with browser without not support Webcomponents.-->'
                         br
                         = '<script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/webcomponents-loader.js"></script>'
                         br
                         br
                         = '<script src="rikaaa-tab.js"></script>'
 
-                    p esm
-                    pre.prettyprint.lang-js
-                        = 'import "rikaaatab" from "rikaaa-tab.esm";'
-                        br
-                        br
-                        ='customElements.define("rikaaa-tab", rikaaatab);'
                 section 
                     p.title Usage
                     p HTML
