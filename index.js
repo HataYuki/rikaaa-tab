@@ -145,7 +145,7 @@ const watchStart = async () => {
 const build = async () => {
     const wcf = () => {
         return new Promise((resolve, reject) => {
-            glob(path.join(config.path.srcDir, config.webcomponents.files), (err, data) => {
+            glob(path.join(config.path.srcDir, 'webcomponents/entryfile.js'), (err, data) => {
                 if (err) reject(err);
                 resolve(data);
            });
@@ -165,8 +165,14 @@ const build = async () => {
     
     d.forEach(c => {
         const outputPath = (c.path.match(/entryfile.js/)) ? path.join('./', `${config.webcomponents.name}.js`) : path.join('./', `${config.webcomponents.name}.esm.js`);
+
+        const licenseReg = new RegExp(`\\n \\* @license\\n \\* ${config.webcomponents.name}.js`);
         
-        const minCode = uglify.minify(c.data).code;
+        const minCode = uglify.minify(c.data, {
+            output: {
+                comments: licenseReg,
+            }
+        }).code;
         
         
         fs.outputFile(outputPath, minCode, err => {
@@ -174,15 +180,6 @@ const build = async () => {
             else console.log('build success');
         });
     });
-    
-    // const outputpath = path.join('./', `${config.webcomponents.name}.js`);
-    // d.forEach(c => {
-    //     const min_code = uglify.minify(c).code;
-    //     fs.outputFile(outputpath, min_code, err => {
-    //         if (err) console.error(err);
-    //         else console.log('build success');
-    //     });
-    // });
 };
 
 const karmaStart = async () => {

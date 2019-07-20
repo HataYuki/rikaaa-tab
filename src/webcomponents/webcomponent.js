@@ -3,10 +3,10 @@ import Multfader from '../assets/js/_MultiFader';
 import Ease from '../assets/js/_Ease';
 import map from '../assets/js/_Map';
 import ready from '../assets/js/_Domready';
-import ResizeObserver from 'resize-observer-polyfill';
+import rikaaaResizeObserver from '../assets/js/rikaaa-ResizeWatcher';
 import Onebang from '../assets/js/_Onebang';
 import ValueObserver from '../assets/js/_ValueObserver';
-import 'mdn-polyfills/Element.prototype.closest';
+import '../assets/js/Element.prototype.closest';
 
 
 const _css = '${{{src/webcomponents/webcomponent.scss}}}';
@@ -49,6 +49,13 @@ export default class rikaaatab extends HTMLElement {
             this._panelslot = this.shadowRoot.querySelector('.panel_slot');
             this._seekbarslot = this.shadowRoot.querySelector('.seekbar_slot');
 
+            if (!window.ResizeObserver && !window.rikaaaReiszeObserver) {
+                Object.defineProperty(window, 'WcRikaaaResizeObserver', {
+                    value: rikaaaResizeObserver
+                });
+            }
+            const resizeobserver = window.ResizeObserver || window.WcRikaaaResizeObserver;
+            
             this._tabs = this._tabslot.assignedNodes({
                 flattern: true
             }).filter(n => n.nodeType === n.ELEMENT_NODE);
@@ -165,6 +172,8 @@ export default class rikaaatab extends HTMLElement {
             Array.from(this._tabs).forEach(n => n.classList.add('tabs'));
 
             this.tabclick = (e) => {
+                console.log('tabclick');
+                
                 const node = this._tabs;
                 const index = node.indexOf(e.target.closest('.tabs'));
                 const diff = index - this.index;
@@ -192,7 +201,7 @@ export default class rikaaatab extends HTMLElement {
                     resizeOnce = Onebang(createValuChangeObserver);
                 }, 1);
             };
-            this.resizeOb = new ResizeObserver(this.resizeRedraw);
+            this.resizeOb = new resizeobserver(this.resizeRedraw);
             this.resizeOb.observe(this);
         }
         this.imgonload(() => {
