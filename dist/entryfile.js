@@ -1013,7 +1013,7 @@
           _this2._panelslot = _this2.shadowRoot.querySelector('.panel_slot');
           _this2._seekbarslot = _this2.shadowRoot.querySelector('.seekbar_slot');
 
-          if (!window.ResizeObserver && !window.rikaaaReiszeObserver) {
+          if (!window.ResizeObserver && !window.WcRikaaaResizeObserver) {
             Object.defineProperty(window, 'WcRikaaaResizeObserver', {
               value: rikaaaResizeWatcher
             });
