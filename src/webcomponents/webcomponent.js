@@ -49,7 +49,7 @@ export default class rikaaatab extends HTMLElement {
             this._panelslot = this.shadowRoot.querySelector('.panel_slot');
             this._seekbarslot = this.shadowRoot.querySelector('.seekbar_slot');
 
-            if (!window.ResizeObserver && !window.rikaaaReiszeObserver) {
+            if (!window.ResizeObserver && !window.WcRikaaaResizeObserver) {
                 Object.defineProperty(window, 'WcRikaaaResizeObserver', {
                     value: rikaaaResizeObserver
                 });
