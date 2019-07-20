@@ -8,18 +8,12 @@ The Custom Element in order to impliment simple tab function.
 ## Installation
 ```bash
 #script
-<!-- If you want to use The Custom Element -->
+<!-- If you want to use the Custom Element with browser without not support Webcomponents. -->
 <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/webcomponents-loader.js"></script>
 
 <script src="rikaaa-tab.js"></script>
 ```
 
-```bash
-#esm
-import "rikaaatab" from "rikaaa-tab.esm";
-
-customElements.define("rikaaa-tab", rikaaatab);
-```
 ## Usage 
 ```bash
 #HTML
