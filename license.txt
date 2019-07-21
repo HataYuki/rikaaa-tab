@@ -1,12 +1,3 @@
-@license
-rikaaa-tab.js
- 
-Generated : 2019-07-21
-Version : 1.0.3
-Author : rikaaa.org | Yuki Hata
-Url : http://rikaaa.org
- 
- 
 The MIT License (MIT)
  
 Copyright 2019 rikaaa.org | Yuki Hata
